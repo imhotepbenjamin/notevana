@@ -46,13 +46,13 @@ padding: 0;
   height: 100%;
   padding: 4%;
   background: #a7cfdf;
-  background: -moz-linear-gradient(45deg,  #a7cfdf 0%, #23538a 100%);
-  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#a7cfdf), color-stop(100%,#23538a));
-  background: -webkit-linear-gradient(45deg,  #a7cfdf 0%,#23538a 100%);
-  background: -o-linear-gradient(45deg,  #a7cfdf 0%,#23538a 100%);
-  background: -ms-linear-gradient(45deg,  #a7cfdf 0%,#23538a 100%);
-  background: linear-gradient(45deg,  #a7cfdf 0%,#23538a 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a7cfdf', endColorstr='#23538a',GradientType=1 );
+  background: -moz-linear-gradient(45deg,  #a7cfdf 0%, #002249 100%);
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#a7cfdf), color-stop(100%,#002249));
+  background: -webkit-linear-gradient(45deg,  #a7cfdf 0%,#002249 100%);
+  background: -o-linear-gradient(45deg,  #a7cfdf 0%,#002249 100%);
+  background: -ms-linear-gradient(45deg,  #a7cfdf 0%,#002249 100%);
+  background: linear-gradient(45deg,  #a7cfdf 0%,#002249 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a7cfdf', endColorstr='#002249',GradientType=1 );
 }
 .notes-nav-top{
   flex: 1 1 10%;
