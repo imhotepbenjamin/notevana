@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>updn notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="modal">
+        <span class="modal-exit">&times;</span>
+        <div class="modal-content effect-glass">
+            <div class="modal-content-center">
+                <ul>
+                    <li><a href="#">Theme</a></li>
+                    <li><a href="#">Setting</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">About Me</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="notes-container">
+        <div class="notes-nav-top">
+            <span class="new-note">
+                <a class="button">
+                    <p>New Note</p>
+                    <p><span class="plus">&plus;</span></p>
+                </a>
+            </span>
+
+            <span class="past-notes">
+                <a class="button">
+                    <p>Past Notes</p>
+                </a>
+            </span>
+        </div>
+
+        <label for="notes-text" class="notes-text-label"><p>Notes</p></label>
+        <textarea id="notes-text" spellcheck></textarea>
+
+        <div class="notes-nav-bottom">
+            <span class="share-notes">
+                <a class="button">
+                    <p>Share Notes</p>
+                </a>
+            </span>
+            <span class="more-notes">
+                <a class="button">
+                    <p>More</p>
+                </a>
+            </span>
+        </div>
+    </div>
+    <script src="popup.js"></script> 
+</body>
+</html>
