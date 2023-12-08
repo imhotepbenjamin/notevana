@@ -9,7 +9,7 @@
       "48": "images/updn-notes-icon.png",
       "128": "images/updn-notes-icon.png"
     },
-    "default_popup": "popup.html"
+    "default_popup": "modal.html"
   },
   "icons": {
     
