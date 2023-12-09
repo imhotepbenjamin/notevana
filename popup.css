@@ -118,8 +118,8 @@ border-radius: 50px;
   width: 100%;
   height: 100%;
   position: fixed;
-  /*display: none;*/
-  display: flex;
+  display: none;
+  /*display: flex;*/
   z-index: 5;
   padding: 0;
   margin: 0;
@@ -152,8 +152,8 @@ border-radius: 50px;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   overflow: hidden; /*makes it so the child elements don't overflow the parent border radius*/ 
-  -webkit-backdrop-filter: blur(3px);
-  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 .modal-options{
   grid-area: modal-options;
@@ -164,7 +164,7 @@ border-radius: 50px;
   align-items: flex-start;
   height: 100%;
   background-color: #0000008c;
-  padding: 0 10%;
+  padding: 0 15%;
   margin: 0;
 }
 .modal-options li{
