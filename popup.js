@@ -2,10 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const modal = document.querySelector('.modal');
   const moreButton = document.querySelector('.more-notes');
   const exitModal = document.querySelector('.modal-exit, .exit-container');
-  const themesButton = document.querySelector('themes-button');
-  const fontsButton = document.querySelector('fonts-button');
-  const helpButton = document.querySelector('help-button');
-  const aboutMeButton = document.querySelector('about-me-button');
+  const allButtons = document.querySelectorAll('.button');
 
   moreButton.addEventListener('click', () => {
     modal.style.display = "flex";
@@ -15,8 +12,27 @@ document.addEventListener('DOMContentLoaded', function () {
     modal.style.display = 'none';
   });
 
-  
+  allButtons.forEach(button => {
 
+    button.addEventListener('mouseover', () => {
+      button.style.backgroundColor = '#6363638c';
+    });
+
+    button.addEventListener('mouseout', () => {
+      button.style.backgroundColor = '#00000095';
+    });
+  });
+
+
+
+
+  moreButton.addEventListener('mouseover', () => {
+    moreButton.style.backgroundColor = '#6363638c';
+  });
+
+  moreButton.addEventListener('mouseout', () => {
+    moreButton.style.backgroundColor = '#00000095';
+  });
 });
 
  
