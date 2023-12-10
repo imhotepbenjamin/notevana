@@ -23,16 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-
-
-
-  moreButton.addEventListener('mouseover', () => {
-    moreButton.style.backgroundColor = '#6363638c';
-  });
-
-  moreButton.addEventListener('mouseout', () => {
-    moreButton.style.backgroundColor = '#00000095';
-  });
 });
 
  
