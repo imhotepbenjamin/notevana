@@ -13,7 +13,31 @@
             <section class = "exit-container">
                 <img src="images/close-icon.png" alt="close-icon" class = "modal-exit">
             </section>
-            <div class="more-modal-content-center">
+            <div class="past-notes-modal-content-center modal-center">
+               <div class="modal-past-notes-container">
+                <div class="past-notes-boxes">
+                    <div class="past-notes-box">
+                        <div class = "past-notes-box-title" maxlength = "15"></div>
+                        <div class="past-notes-box-body" maxlength = "30"></div>
+                        <div class="past-notes-box-date"></div>
+                    </div>
+                </div>
+                <div class="past-notes-preview">
+                    <div class="past-notes-preview-box">
+
+                    </div>
+                    <div class="past-notes-preview-options">
+                        <div class="past-notes-preview-open">
+                            <h3 class="past-open button">Open</h3>
+                        </div>
+                        <div class="past-notes-preview-delete">
+                            <h3 class="past-delete button">Delete</h3>
+                        </div>
+                    </div>
+                </div>
+               </div> 
+            </div>  
+            <div class="more-modal-content-center modal-center">
                 <!--<span class="modal-exit">&times;</span>-->
                 <div class = "modal-options-container  panBackground theme5">
                     <!--more options-->
@@ -172,10 +196,13 @@
                 
 
             </div>
+              
+
+
         </div>
     </div>
     <div class="notes-container theme5">
-        <div class="notes-nav-top">
+        <div class="notes-nav-top navbar">
             <span class="new-note">
                 <a class="button">
                     <p>New Note</p>
@@ -195,7 +222,7 @@
         <help-section-label for="notes-text" id="notes-text-help-section-label"><p>Notes</p></help-section-label>
         <textarea id="notes-text" spellcheck></textarea>
 
-        <div class="notes-nav-bottom">
+        <div class="notes-nav-bottom navbar">
             <span class="share-notes">
                 <a class="button">
                     <p>Share Notes</p>
@@ -208,6 +235,7 @@
             </span>
         </div>
     </div>
-    <script src="popup.js"></script> 
+    <script src="popup.js"></script>
+    <script src="/js/toolbar.js"></script>
 </body>
 </html>

@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const modal = document.querySelector('.modal');
   const moreModalContentCenter = document.querySelector('.more-modal-content-center');
   const moreButton = document.querySelector('.more-notes');
+  const pastNotesModalContentCenter = document.querySelector('.past-notes-modal-content-center');
+  const pastNotesButton = document.querySelector('.past-notes');
   const exitModal = document.querySelector('.modal-exit, .exit-container');
   const themesContainer = document.querySelector('.notes-container');
   const allButtons = document.querySelectorAll('.button');
@@ -17,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const moreAboutMeContainer = document.querySelector('#more-about-me-container');
   const helpSections = document.querySelectorAll('.help-section');
   const fontBoxes = document.querySelectorAll('.font-box');
+  const newNoteButton = document.querySelector('.new-note');
+  const notesTextArea = document.getElementById('notes-text');
+  const pastNotesContainer = document.querySelector('.past-notes-boxes');
 
   // Changes color of button when hovered over
   allButtons.forEach(button => {
@@ -79,8 +84,43 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Event listeners for modal interactions
-  moreButton.addEventListener('click', () => showModal());
+  moreButton.addEventListener('click', () => showMoreModal());
   exitModal.addEventListener('click', () => hideModal());
+  pastNotesButton.addEventListener('click', () => showPastModal());
+
+  // Event listener for new-note button
+  newNoteButton.addEventListener('click', function () {
+    const notesTextValue = notesTextArea.value.trim();
+
+    if (notesTextValue.length > 0) {
+      const newPastNotesBox = document.createElement('div');
+      newPastNotesBox.className = 'past-notes-box';
+
+      const title = notesTextValue.substring(0, 15) + '...'; // Add ellipsis here
+      const body = notesTextValue.substring(15, 50) + '...'; // Add ellipsis here
+      const dateTime = getCurrentDateTime();
+
+      newPastNotesBox.innerHTML = `
+        <div class="past-notes-box-title">${title}</div>
+        <div class="past-notes-box-body">${body}</div>
+        <div class="past-notes-box-date">${dateTime}</div>
+      `;
+
+      pastNotesContainer.appendChild(newPastNotesBox);
+
+      notesTextArea.value = '';
+
+      // Show the past-notes-box
+      newPastNotesBox.style.display = 'block'; // or 'flex' depending on your layout
+    }
+  });
+
+  // Function to get the current date and time
+  function getCurrentDateTime() {
+    const options = { month: '2-digit', day: '2-digit', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    const formattedDate = new Date().toLocaleString('en-US', options).replace(/,/g, ' at');
+    return formattedDate.replace(/\//g, '.');
+  }
 
   // Function to toggle the display of containers
   function toggleContainers(activeContainer) {
@@ -102,14 +142,20 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Function to show the modal
-  function showModal() {
+  function showMoreModal() {
     modal.style.display = 'flex';
     moreModalContentCenter.style.display = 'grid';
+  }
+
+  function showPastModal() {
+    modal.style.display = 'flex';
+    pastNotesModalContentCenter.style.display = 'grid';
   }
 
   // Function to hide the modal
   function hideModal() {
     modal.style.display = 'none';
     moreModalContentCenter.style.display = 'none';
+    pastNotesModalContentCenter.style.display = 'none';
   }
 });
