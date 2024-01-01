@@ -2,20 +2,17 @@
   "manifest_version": 3,
   "name": "Notes Extension",
   "version": "1.0",
-  "description": "A simple notes extension",
+  "description": "Notevana: Elevate your stored thoughts, ideas, and info with a cool twist. Unleash creativity in a professional groove!",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
   "action": {
+    "default_popup": "modal.html",
     "default_icon": {
       "16": "images/updn-notes-icon.png",
       "48": "images/updn-notes-icon.png",
       "128": "images/updn-notes-icon.png"
-    },
-    "default_popup": "modal.html"
-  },
-  "icons": {
-    
-    "16": "images/updn-notes-icon.png",
-    "48": "images/updn-notes-icon.png",
-    "128": "images/updn-notes-icon.png"
-  },
-  "permissions": ["storage"]
+    }
+  }
 }

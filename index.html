@@ -1,56 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset = "UTF-8">
   <title>notevana</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <link rel="stylesheet" href="popup.css">
+  <meta name = "viewport" content = "width=device-width, initial-scale=1">
+  <meta name = "description" content = "">
+  <link rel = "stylesheet" href = "css/popup.css">
 </head>
 <body>
-    <div class="modal">
+    <div id ="modal">
         <div class="modal-content effect-glass">
             <section class = "exit-container">
                 <img src="images/close-icon.png" alt="close-icon" class = "modal-exit">
             </section>
             <div class="past-notes-modal-content-center modal-center">
                <div class="modal-past-notes-container">
-                <div class="past-notes-boxes">
-                    <div class="past-notes-box">
-                        <div class = "past-notes-box-title" maxlength = "15"></div>
-                        <div class="past-notes-box-body" maxlength = "30"></div>
-                        <div class="past-notes-box-date"></div>
+                <div class="past-notes-boxes-container">
+                    <div class="past-notes-boxes">
+                        <div class="past-notes-box">
+                            <div class = "past-notes-box-title"></div>
+                            <div class="past-notes-box-body"></div>
+                            <div class="past-notes-box-date"></div>
+                        </div>
+                        <div class="past-notes-trash-container button">
+                            <h3 class="past-notes-trash-button">Trash</h3>
+                        </div>
+                    </div>
+                    <div class="past-notes-trash effect-glass">
+                        <div class="past-notes-trash-box">
+                            <div class = "past-notes-trash-box-title"></div>
+                            <div class="past-notes-trash-box-body"></div>
+                            <div class="past-notes-trash-box-date"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="past-notes-preview">
-                    <div class="past-notes-preview-box">
+                <div id = "past-notes-space-container" class="theme5">
+                    <div id="past-notes-space">
+                        <div class="past-notes-preview-box">
+                        </div>
+                        <div class="past-notes-preview-options">
+                            <div class="past-notes-preview-open">
+                                <h3 class="past-open button">Open</h3>
+                            </div>
+                            <div class="past-notes-preview-delete">
+                                <h3 class="past-delete button">Delete</h3>
+                            </div>
+                        </div>
+                        <div class="past-notes-preview-delete-ask-if-sure effect-glass">
+                            <div class="ask-if-sure-container">
+                                <h4 class="ask-if-sure">Are you sure you would like to delete this note?</h4>
+                                <div class="yes-no">
+                                    <h3 class="yes yes-no-button">Yes</h3>
+                                    <h3 class="no yes-no-button">No</h3>
+                                </div>
+                            </div>
+                        </div>
 
-                    </div>
-                    <div class="past-notes-preview-options">
-                        <div class="past-notes-preview-open">
-                            <h3 class="past-open button">Open</h3>
-                        </div>
-                        <div class="past-notes-preview-delete">
-                            <h3 class="past-delete button">Delete</h3>
-                        </div>
                     </div>
                 </div>
                </div> 
             </div>  
             <div class="more-modal-content-center modal-center">
                 <!--<span class="modal-exit">&times;</span>-->
-                <div class = "modal-options-container  panBackground theme5">
+                <div class = "more-modal-options-container  panBackground theme5">
                     <!--more options-->
-                    <ul class = "modal-options">
-                        <li id="themes-button" class = "modal-selection underline">Themes</li>
-                        <li id="fonts-button" class = "modal-selection">Fonts</li>
+                    <ul class = "more-modal-options">
+                        <li id="themes-button" class = "modal-selection active-selection">Themes</li>
+                        <li id="settings-button" class = "modal-selection">Settings</li>
                         <li id="help-button" class = "modal-selection">Help</li>
                         <li id="about-me-button" class = "modal-selection">About Me</li>
                     </ul>
                 </div>
                 
                 <!--more space-->
-                <div class = "modal-space">
+                <div class = "more-modal-space">
                     <!--More Themes Container-->
                     <section id = "more-themes-container">
                         <div id = "more-themes">
@@ -67,19 +90,16 @@
                             </div>
                         </div>
                     </section>
-                    <!--More Fonts Container-->
-                    <section id = "more-fonts-container">
-                        <div id = "more-fonts">
-                            <div id = "fonts">
-                                <div id = "font1" class = "font-box">Abc</div>
-                                <div id = "font2" class = "font-box">Abc</div>
-                                <div id = "font3" class = "font-box">Abc</div>
-                                <div id = "font4" class = "font-box">Abc</div>
-                                <div id = "font5" class = "font-box">Abc</div>
-                                <div id = "font6" class = "font-box">Abc</div>
-                                <div id = "font7" class = "font-box">Abc</div>
-                                <div id = "font8" class = "font-box">Abc</div>
-                                <div id = "font9" class = "font-box">Abc</div>
+                    <!--More Settings Container-->
+                    <section id = "more-settings-container">
+                        <div id = "more-settings">
+                            <div id = "settings">
+                               <div id="settings-defaults" class = "settings-subsection">
+                                <h3>Defaults</h3>
+                               </div>
+                               <div id="settings-general" class = "settings-subsection">
+                                <h3>General</h3>
+                               </div>
                             </div>
                         </div>
                     </section>
@@ -185,23 +205,11 @@
                             </div>
                         </div>
                     </section>
-
-
-
-
-
-
-
                 </div>
-                
-
             </div>
-              
-
-
         </div>
     </div>
-    <div class="notes-container theme5">
+    <div id = "notes-container" class = "theme5">
         <div class="notes-nav-top navbar">
             <span class="new-note">
                 <a class="button">
@@ -209,19 +217,32 @@
                     <p><span class="plus">&plus;</span></p>
                 </a>
             </span>
-
-            
-
             <span class="past-notes">
                 <a class="button">
                     <p>Past Notes</p>
                 </a>
             </span>
         </div>
-
-        <help-section-label for="notes-text" id="notes-text-help-section-label"><p>Notes</p></help-section-label>
-        <textarea id="notes-text" spellcheck></textarea>
-
+        <div class="toolbar">
+        </div>
+        <div id="notes-text-container">
+            <help-section-label for="notes-text" id="notes-text-help-section-label"><p>Notes</p></help-section-label>
+            <textarea id="notes-text" placeholder = "What's on your mind?"spellcheck></textarea>
+            <div class = "bottom-text-bar">
+                <div id="bottom-text-bar-counters">
+                    <div class="counter-container">
+                        <div class = "count">Char:<span class = "counter" id = "char-count">0</span></div>
+                    </div>
+                    <div class="counter-container">
+                        <div class = "count">Word:<span class = "counter" id = "word-count">0</span></div>
+                    </div>
+                </div>
+                
+                
+            </div>
+  
+        </div>
+        
         <div class="notes-nav-bottom navbar">
             <span class="share-notes">
                 <a class="button">
@@ -235,7 +256,6 @@
             </span>
         </div>
     </div>
-    <script src="popup.js"></script>
-    <script src="/js/toolbar.js"></script>
+    <script src = "js/popup.js" type = "module"></script>
 </body>
 </html>
