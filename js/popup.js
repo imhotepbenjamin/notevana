@@ -212,6 +212,10 @@ themeBoxes.forEach(theme => {
     pastNotesSpaceContainer.classList.add(selectedThemeClass);
   });
 });
+
+
+
+
   // past-notes-preview-delete functionality
   pastNotesPreviewDelete.addEventListener('click', function () {
     pastNotesPreviewDeleteAskIfSure.style.display = 'flex';

@@ -1,15 +1,15 @@
 *{
-  overflow: hidden !important;
+  overflow: hidden;
   margin: 0;
   padding: 0;
 }
 html {
-    overflow: hidden !important;
-    height: 1000px;
-    width: 600px;
+    overflow: hidden;
+    height: 600px;
+    width: 800px;
   }
   body {
-    overflow: hidden !important;
+    overflow: hidden;
     background-color: #0000006d;
     height: 100%;
     width: 100%;
