@@ -284,6 +284,7 @@ z-index: 10;
   background: #ffffff;
   border-radius: 10px;
   padding: 5%;
+  overflow-y: scroll;
 }
 .past-notes-preview-options {
   flex: 1 1 auto;

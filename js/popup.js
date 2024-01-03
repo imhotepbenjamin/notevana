@@ -39,8 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const pastNotesTrashButton = document.querySelector('.past-notes-trash-button');
   const pastNotesTrash = document.querySelector('.past-notes-trash');
   const pastNotesTrashBoxes = document.querySelectorAll('.past-notes-trash-box');
-  
-
   //makes it so that every button's background changes when hovered over
   allButtons.forEach(button => {
     //When hovered over
@@ -52,33 +50,31 @@ document.addEventListener('DOMContentLoaded', function () {
       button.style.background = '#0000009f';
     });
   });
-
-  //PAST NOTES BUTTON
-  // when past notes button is clicked, show the modal and past notes modal content
-  pastNotesButton.addEventListener('click', showPastNotesModal);
   // function for showing the modal and past notes modal content
   function showPastNotesModal() {
     modal.style.display = 'flex';
     pastNotesModalContentCenter.style.display = 'flex';
   }
-
-  //MORE BUTTON
-  // when more button is clicked, show the modal and more modal content
-  moreButton.addEventListener('click', showMoreModal);
-
+    //PAST NOTES BUTTON
+  // when past notes button is clicked, show the modal and past notes modal content
+  pastNotesButton.addEventListener('click', showPastNotesModal);
   // function for showing the modal and more modal content
   function showMoreModal() {
     modal.style.display = 'flex';
     moreModalContentCenter.style.display = 'flex';
   }
-
-  exitModal.addEventListener('click', hideModal);
-
+  //MORE BUTTON
+  // when more button is clicked, show the modal and more modal content
+  moreButton.addEventListener('click', showMoreModal);
+  // HIDE MODAL
+  // hides the modal and modal-content-centers
   function hideModal() {
     modal.style.display = 'none';
     moreModalContentCenter.style.display = 'none';
     pastNotesModalContentCenter.style.display = 'none';
   }
+  exitModal.addEventListener('click', hideModal);
+  // modal.addEventListener('click', hideModal);
 
   //placeholder suggestion messages
   const placeholderSuggestions = [
@@ -110,18 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
   setInterval(updatePlaceholder, 10000);
   //calls and starts the updatePlaceholder function
   updatePlaceholder();
-  
 
-
-  // CHARACTER COUNTER
-  // Calls the updateCharCounter function on different events
-  notesTextArea.addEventListener('input', counter);
-  notesTextArea.addEventListener('keyup', counter);
-  notesTextArea.addEventListener('keydown', counter);
-  notesTextArea.addEventListener('paste', counter);
-  notesTextArea.addEventListener('cut', counter);
-  notesTextArea.addEventListener('drop', counter);
-  notesTextArea.addEventListener('change', counter);
 
 //COUNTER SECTION FUNCTION
 function counter() {
@@ -153,12 +138,81 @@ function counter() {
   };
   updateWordCounter();
 };
+  // CHARACTER COUNTER
+  // Calls the updateCharCounter function on different events
+  notesTextArea.addEventListener('input', counter);
+  notesTextArea.addEventListener('keyup', counter);
+  notesTextArea.addEventListener('keydown', counter);
+  notesTextArea.addEventListener('paste', counter);
+  notesTextArea.addEventListener('cut', counter);
+  notesTextArea.addEventListener('drop', counter);
+  notesTextArea.addEventListener('change', counter);
+  notesTextArea.addEventListener('blur', counter);
+
+
+function saveNote() {
+  // gets the value of all the contents of the notesTextArea
+  const notesTextAreaContent = notesTextArea.value.trim;
+  const newPastNotesBox = document.createElement('div');
+  newPastNotesBox.className = 'past-notes-box';
+  // if over 10 characters, title ends with an elipsis.
+  // if under 10 characters, title will display up to the first 10
+  const title = notesTextAreaContent.length > 10 ? notesTextAreaContent.slice(0,10) + '...':notesTextAreaContent.slice(0,10);
+  // if over 30 characters, title ends with an elipsis.
+  // if under 30 characters, title will display up to the first 30
+  const body = notesTextAreaContent.length > 30 ? notesTextAreaContent.slice(11,30) + '...' : notesTextAreaContent.slice(11,30);
+  const date = new Date();
+  const formattedDate = date.toLocaleString().replace(/-/g, '.');
+  newPastNotesBox.innerHTML = 
+  `
+  <div class = "past-notes-box-title">${title}</div>
+  <div class = "past-notes-box-body">${body}</div>
+  <div class = "past-notes-box-date">${formattedDate}</div>
+  `;
+  // pastNotesBoxesContainer.appendChild(newPastNotesBox);
+  pastNotesBoxesContainer.insertBefore(newPastNotesBox, pastNotesBoxesContainer.firstChild);
+  newPastNotesBox.style.display = 'flex';
+  pastNotesPreviewBox.textContent = notesTextAreaContent;
+  notesTextArea.value = "";
+  function savetoJSON() {
+  }
+}
+newNoteButton.addEventListener('click', saveNote);
+
+function savetoJSON() {
+  
+}
+/*function createNewPastNotesBox(notesTextValue) {
+    const newPastNotesBox = document.createElement('div');
+    newPastNotesBox.className = 'past-notes-box';
+    newPastNotesBox.addEventListener('mouseover', function () {
+      newPastNotesBox.classList.add('active-selection');
+    });
+    newPastNotesBox.addEventListener('mouseout', function () {
+      newPastNotesBox.classList.remove('active-selection');
+    });
+    newPastNotesBox.addEventListener('click', function () {
+      pastNotesPreviewBox.textContent = notesTextValue;
+    });
+    const title = notesTextValue.slice(0, 15);
+    const body = notesTextValue.slice(15, 30);
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleString().replace(/-/g, '.');
+    newPastNotesBox.innerHTML = `
+      <div class="past-notes-box-title">${title}</div>
+      <div class="past-notes-box-body">${body}</div>
+      <div class="past-notes-box-date">${formattedDate}</div>
+    `;
+    pastNotesBoxesContainer.appendChild(newPastNotesBox);
+    pastNotesPreviewBox.textContent = notesTextValue;
+    notesTextArea.value = '';
+  }*/
   // MODAL SELECTIONS
   // Select all elements with the class 'modalSelections' and iterate over each one
   modalSelections.forEach(selection => {
     // Add a click event listener to each 'modalSelections' element
     selection.addEventListener('click', () => {
-      // 1. Remove the 'active-selection' class from all 'modalSelections' elements
+      // 1. Remove t he 'active-selection' class from all 'modalSelections' elements
       modalSelections.forEach(allSelections => {
         allSelections.classList.remove('active-selection');
       });
@@ -166,7 +220,7 @@ function counter() {
       selection.classList.add('active-selection');
     });
   });
-  
+
   themesButton.addEventListener('click', () => toggleContainers(moreThemesContainer));
   SettingsButton.addEventListener('click', () => toggleContainers(moreSettingsContainer));
   helpButton.addEventListener('click', () => toggleContainers(moreHelpContainer));
@@ -212,11 +266,7 @@ themeBoxes.forEach(theme => {
     pastNotesSpaceContainer.classList.add(selectedThemeClass);
   });
 });
-
-
-
-
-  // past-notes-preview-delete functionality
+/*
   pastNotesPreviewDelete.addEventListener('click', function () {
     pastNotesPreviewDeleteAskIfSure.style.display = 'flex';
   });
@@ -230,9 +280,9 @@ themeBoxes.forEach(theme => {
     if (notesTextValue !== '') {
       createNewPastNotesBox(notesTextValue);
     }
-  });
+  });*/
 
-  pastNotesPreviewOpen.addEventListener('click', function () {
+  /*pastNotesPreviewOpen.addEventListener('click', function () {
     notesTextArea.value = pastNotesPreviewBox.textContent;
   });
 
@@ -242,38 +292,9 @@ themeBoxes.forEach(theme => {
 
   yesNoYes.addEventListener('click', function () {
     deleteSelectedPastNotesBox();
-  });
+  });*/
 
   // Other functions...
-  function createNewPastNotesBox(notesTextValue) {
-    const newPastNotesBox = document.createElement('div');
-    newPastNotesBox.className = 'past-notes-box';
-    newPastNotesBox.addEventListener('mouseover', function () {
-      newPastNotesBox.classList.add('active-selection');
-    });
-
-    newPastNotesBox.addEventListener('mouseout', function () {
-      newPastNotesBox.classList.remove('active-selection');
-    });
-
-    newPastNotesBox.addEventListener('click', function () {
-      pastNotesPreviewBox.textContent = notesTextValue;
-    });
-
-    const title = notesTextValue.slice(0, 15);
-    const body = notesTextValue.slice(15, 30);
-    const currentDate = new Date();
-    const formattedDate = currentDate.toLocaleString().replace(/-/g, '.');
-    newPastNotesBox.innerHTML = `
-      <div class="past-notes-box-title">${title}</div>
-      <div class="past-notes-box-body">${body}</div>
-      <div class="past-notes-box-date">${formattedDate}</div>
-    `;
-
-    pastNotesBoxesContainer.appendChild(newPastNotesBox);
-    pastNotesPreviewBox.textContent = notesTextValue;
-    notesTextArea.value = '';
-  }
   function togglePastNotesTrash() {
     if (pastNotesTrash.style.display === 'none') {
       pastNotesTrash.style.display = 'flex';
@@ -282,25 +303,5 @@ themeBoxes.forEach(theme => {
       pastNotesTrash.style.display = 'none';
       pastNotesBoxesContainer.style.overflowY = 'auto';
     }
-  }
-  function deleteSelectedPastNotesBox() {
-    const selectedPastNotesBox = document.querySelector('.past-notes-box.active-selection');
-    if (selectedPastNotesBox) {
-      const title = selectedPastNotesBox.querySelector('.past-notes-box-title').textContent;
-      const body = selectedPastNotesBox.querySelector('.past-notes-box-body').textContent;
-      const currentDate = new Date();
-      const formattedDate = currentDate.toLocaleString().replace(/-/g, '.');
-      const newPastNotesTrashBox = document.createElement('div');
-      newPastNotesTrashBox.className = 'past-notes-trash-box';
-      newPastNotesTrashBox.innerHTML = `
-        <div class="past-notes-trash-box-title">${title}</div>
-        <div class="past-notes-trash-box-body">${body}</div>
-        <div class="past-notes-trash-box-date">${formattedDate}</div>
-      `;
-
-      pastNotesTrashContainer.appendChild(newPastNotesTrashBox);
-      selectedPastNotesBox.remove();
-    }
-    pastNotesPreviewDeleteAskIfSure.style.display = 'none';
   }
 });
