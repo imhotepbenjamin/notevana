@@ -15,14 +15,22 @@
             </section>
             <div class="past-notes-modal-content-center modal-center">
                <div class="modal-past-notes-container">
-                <div class="past-notes-boxes-container">
+                <div class="past-notes-sidebar">
                     <div class="past-notes-boxes">
-                        <div class="past-notes-box">
-                            <div class = "past-notes-box-title"></div>
-                            <div class = "past-notes-box-date"></div>
+                        <div id = "past-notes-search-button-container" class = "buttons-past">
+                            <div class = "past-notes-button">Search</div>
+                            <div class="search-icon">&telrec;</div>
                         </div>
-                        <div class="past-notes-trash-container button">
-                            <h3 class="past-notes-trash-button">Trash</h3>
+                        <div class="past-notes-box-wrapper">
+                            <div class="past-notes-box">
+                                <div class = "past-notes-box-title"></div>
+                                <div class="past-notes-box-body"></div>
+                                <div class = "past-notes-box-date"></div>
+                            </div>
+                        </div>
+                        
+                        <div id = "past-notes-trash-button-container" class = "buttons-past">
+                            <div class="past-notes-button">Trash</div>
                         </div>
                     </div>
                     <div class="past-notes-trash effect-glass">
@@ -61,7 +69,7 @@
             </div>  
             <div class="more-modal-content-center modal-center">
                 <!--<span class="modal-exit">&times;</span>-->
-                <div class = "more-modal-options-container  panBackground theme5">
+                <div id = "more-modal-sidebar" class = "panBackground theme5">
                     <!--more options-->
                     <ul class = "more-modal-options">
                         <li id="themes-button" class = "modal-selection active-selection">Themes</li>
@@ -72,7 +80,7 @@
                 </div>
                 
                 <!--more space-->
-                <div class = "more-modal-space">
+                <div id = "more-modal-space-container">
                     <!--More Themes Container-->
                     <section id = "more-themes-container">
                         <div id = "more-themes">
@@ -226,7 +234,7 @@
         </div>
         <div id="notes-text-container">
             <help-section-label for="notes-text" id="notes-text-help-section-label"><p>Notes</p></help-section-label>
-            <textarea id="notes-text" placeholder = "What's on your mind?"spellcheck></textarea>
+            <textarea id="notes-text" placeholder = "What's on your mind?" type = "text" spellcheck></textarea>
             <div class = "bottom-text-bar">
                 <div id="bottom-text-bar-counters">
                     <div class="counter-container">

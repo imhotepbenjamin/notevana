@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const pastNotesButton = document.querySelector('.past-notes');
   const exitModal = document.querySelector('.modal-exit, .exit-container');
   const notesContainer = document.querySelector('#notes-container');
-  const allButtons = document.querySelectorAll('.button');
+  const mainButtons = document.querySelectorAll('.button');
+  const pastButtons = document.querySelectorAll('.buttons-past')
   const notesTextArea = document.querySelector('#notes-text');
   const charCount = document.querySelector('#char-count');
   const wordCount = document.querySelector('#word-count');
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const helpSections = document.querySelectorAll('.help-section');
   const fontBoxes = document.querySelectorAll('.font-box');
   const newNoteButton = document.querySelector('.new-note');
-  const pastNotesBoxesContainer = document.querySelector('.past-notes-boxes');
+  const pastNotesBoxWrapper = document.querySelector('.past-notes-box-wrapper');
   const pastNotesPreviewBox = document.querySelector('.past-notes-preview-box');
   const pastNotesPreviewOpen = document.querySelector('.past-open');
   const pastNotesPreviewDelete = document.querySelector('.past-notes-preview-delete');
@@ -39,23 +40,26 @@ document.addEventListener('DOMContentLoaded', function () {
   const pastNotesTrashButton = document.querySelector('.past-notes-trash-button');
   const pastNotesTrash = document.querySelector('.past-notes-trash');
   const pastNotesTrashBoxes = document.querySelectorAll('.past-notes-trash-box');
-  //makes it so that every button's background changes when hovered over
-  allButtons.forEach(button => {
-    //When hovered over
-    button.addEventListener('mouseover', () => {
-      button.style.background = '#0000006b';
+
+  // function that changes button color
+  function buttonColorChange(buttons) {
+    buttons.forEach(button => {
+      button.addEventListener('mouseover', () => {
+        button.style.background = '#0000006b';
+      });
+      button.addEventListener('mouseout',  () => {
+        button.style.background = '#0000009f';
+      });
     });
-    //When hovered off
-    button.addEventListener('mouseout', () =>{
-      button.style.background = '#0000009f';
-    });
-  });
+  }
+  buttonColorChange(mainButtons);
+  buttonColorChange(pastButtons);
+
   // function for showing the modal and past notes modal content
   function showPastNotesModal() {
     modal.style.display = 'flex';
     pastNotesModalContentCenter.style.display = 'flex';
   }
-    //PAST NOTES BUTTON
   // when past notes button is clicked, show the modal and past notes modal content
   pastNotesButton.addEventListener('click', showPastNotesModal);
   // function for showing the modal and more modal content
@@ -63,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
     modal.style.display = 'flex';
     moreModalContentCenter.style.display = 'flex';
   }
-  //MORE BUTTON
+
   // when more button is clicked, show the modal and more modal content
   moreButton.addEventListener('click', showMoreModal);
   // HIDE MODAL
@@ -150,37 +154,53 @@ function counter() {
   notesTextArea.addEventListener('blur', counter);
 
 
-function saveNote() {
-  // gets the value of all the contents of the notesTextArea
-  const notesTextAreaContent = notesTextArea.value.trim;
-  const newPastNotesBox = document.createElement('div');
-  newPastNotesBox.className = 'past-notes-box';
-  // if over 10 characters, title ends with an elipsis.
-  // if under 10 characters, title will display up to the first 10
-  const title = notesTextAreaContent.length > 10 ? notesTextAreaContent.slice(0,10) + '...':notesTextAreaContent.slice(0,10);
-  // if over 30 characters, title ends with an elipsis.
-  // if under 30 characters, title will display up to the first 30
-  const body = notesTextAreaContent.length > 30 ? notesTextAreaContent.slice(11,30) + '...' : notesTextAreaContent.slice(11,30);
-  const date = new Date();
-  const formattedDate = date.toLocaleString().replace(/-/g, '.');
-  newPastNotesBox.innerHTML = 
-  `
-  <div class = "past-notes-box-title">${title}</div>
-  <div class = "past-notes-box-body">${body}</div>
-  <div class = "past-notes-box-date">${formattedDate}</div>
-  `;
-  // pastNotesBoxesContainer.appendChild(newPastNotesBox);
-  pastNotesBoxesContainer.insertBefore(newPastNotesBox, pastNotesBoxesContainer.firstChild);
-  newPastNotesBox.style.display = 'flex';
-  pastNotesPreviewBox.textContent = notesTextAreaContent;
-  notesTextArea.value = "";
-  function savetoJSON() {
+  function saveNote() {
+    // gets the value of all the contents of the notesTextArea as string and trims off whitespace before and after
+    const notesTextAreaContent = notesTextArea.value.trim();
+  
+    // Check if notesTextAreaContent has a length greater than 0
+    if (notesTextAreaContent.length > 0) {
+      // creates a new div
+      const newPastNotesBox = document.createElement('div');
+      // the class of the new div is past-notes-box
+      newPastNotesBox.className = 'past-notes-box';
+      // if over 10 characters, title ends with an ellipsis.
+      // if under 10 characters, the title will display up to the first 10
+      const title = notesTextAreaContent.length > 10 ? notesTextAreaContent.slice(0,10) + '...' : notesTextAreaContent.slice(0,10);
+      // if over 30 characters, body ends with an ellipsis.
+      // if under 30 characters, body will display up to the first 30
+      const body = notesTextAreaContent.length > 30 ? notesTextAreaContent.slice(11,30) + '...' : notesTextAreaContent.slice(11,30);
+      const date = new Date();
+      const formattedDate = date.toLocaleString().replace(/-/g, '.');
+      newPastNotesBox.innerHTML = 
+      `
+      <div class="past-notes-box-title">${title}</div>
+      <div class="past-notes-box-body">${body}</div>
+      <div class="past-notes-box-date">${formattedDate}</div>
+      `;
+      // pastNotesBoxWrapper.appendChild(newPastNotesBox);
+      // places new note boxes before the previous first note box
+      pastNotesBoxWrapper.insertBefore(newPastNotesBox, pastNotesBoxWrapper.firstChild);
+      newPastNotesBox.style.display = 'flex';
+      pastNotesPreviewBox.textContent = notesTextAreaContent;
+      notesTextArea.value = "";
+    }
   }
-}
-newNoteButton.addEventListener('click', saveNote);
+  
+  newNoteButton.addEventListener('click', saveNote);
+  
 
 function savetoJSON() {
+const notesTextAreaContent = notesTextArea.value.trim;
+
+if(notesTextAreaContent !== '') {
+  const newNote = {
+    title: notesTextAreaContent.length > 15 ? notesTextAreaContent.slice(0,15) + '...' : notesTextAreaContent.slice(0,15),
+    body: notesTextAreaContent,
+    date: new Date().toLocaleString().replace(/-/g, '.')
   
+  }
+}
 }
 /*function createNewPastNotesBox(notesTextValue) {
     const newPastNotesBox = document.createElement('div');
@@ -203,7 +223,7 @@ function savetoJSON() {
       <div class="past-notes-box-body">${body}</div>
       <div class="past-notes-box-date">${formattedDate}</div>
     `;
-    pastNotesBoxesContainer.appendChild(newPastNotesBox);
+    pastNotesBoxWrapper.appendChild(newPastNotesBox);
     pastNotesPreviewBox.textContent = notesTextValue;
     notesTextArea.value = '';
   }*/
@@ -298,10 +318,10 @@ themeBoxes.forEach(theme => {
   function togglePastNotesTrash() {
     if (pastNotesTrash.style.display === 'none') {
       pastNotesTrash.style.display = 'flex';
-      pastNotesBoxesContainer.style.overflowY = 'hidden';
+      pastNotesBoxWrapper.style.overflowY = 'hidden';
     } else {
       pastNotesTrash.style.display = 'none';
-      pastNotesBoxesContainer.style.overflowY = 'auto';
+      pastNotesBoxWrapper.style.overflowY = 'auto';
     }
   }
 });
